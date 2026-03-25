@@ -53,7 +53,7 @@ const Navbar = () => {
                 <a 
                   href={link.href} 
                   onClick={(e) => handleScrollTo(e, link.href)}
-                  className="text-sm font-medium hover:text-primary-500 transition-colors"
+                  className="text-base tracking-wide font-medium hover:text-primary-500 transition-colors"
                 >
                   {link.name}
                 </a>

@@ -1,13 +1,21 @@
+/* ── Import Figtree for the name heading ── */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@700;800;900&display=swap');
+
 .hero {
   position: relative;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 55fr 45fr;
   overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 60%, #f1f5f9 100%);
+  transition: background 0.3s ease;
+}
+
+:is(.dark) .hero {
   background: linear-gradient(135deg, #0d1117 0%, #141b27 60%, #0a1628 100%);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr;
   }
@@ -22,7 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 7rem 5% 7rem 9%;
+  padding: 7rem 4% 7rem 9%;
   position: relative;
   z-index: 2;
 }
@@ -51,16 +59,22 @@
   border-radius: 2px;
 }
 
+/* ── Name: Figtree bold, single line ── */
 .hero-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.6rem, 7.5vw, 6.8rem);
-  font-weight: 600;
+  font-family: 'Figtree', sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 4rem);
+  font-weight: 800;
   line-height: 1.05;
-  letter-spacing: 0.01em;
-  color: var(--text-color);
+  letter-spacing: -0.02em;
+  color: #1e293b;
+  white-space: nowrap;
   margin: 0 0 0.15em;
   opacity: 0;
   animation: fadeUp 0.6s 0.35s forwards;
+}
+
+:is(.dark) .hero-name {
+  color: var(--text-color);
 }
 
 .hero-name .dot {
@@ -71,11 +85,15 @@
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 300;
-  color: #94a3b8;
+  color: #64748b;
   letter-spacing: 0.04em;
   margin-bottom: 1.2rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.5s forwards;
+}
+
+:is(.dark) .hero-role {
+  color: #94a3b8;
 }
 
 .hero-divider {
@@ -89,13 +107,17 @@
 }
 
 .hero-desc {
-  max-width: 420px;
+  max-width: 460px;
   font-size: 1rem;
   line-height: 1.75;
-  color: #94a3b8;
+  color: #64748b;
   margin-bottom: 2.2rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.7s forwards;
+}
+
+:is(.dark) .hero-desc {
+  color: #94a3b8;
 }
 
 /* ── CTA buttons ── */
@@ -103,7 +125,7 @@
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.4rem;
   opacity: 0;
   animation: fadeUp 0.6s 0.85s forwards;
 }
@@ -131,16 +153,21 @@
 .btn-outline {
   padding: 12px 30px;
   background: transparent;
-  color: #ffffff;
+  color: #334155;
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid #94a3b8;
   border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
   transition: border-color 0.25s, color 0.25s, transform 0.2s;
   letter-spacing: 0.04em;
+}
+
+:is(.dark) .btn-outline {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .btn-outline:hover {
@@ -165,11 +192,16 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #94a3b8;
   border-radius: 50%;
-  color: #ffffff;
+  color: #334155;
   text-decoration: none;
   transition: border-color 0.25s, color 0.25s, transform 0.25s;
+}
+
+:is(.dark) .social-link {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
 }
 
 .social-link:hover {
@@ -178,52 +210,116 @@
   transform: translateY(-3px);
 }
 
-/* ── Right panel / photo placeholder ── */
+/* ── Right panel — centered card ── */
 .hero-photo {
   position: relative;
   display: flex;
   align-items: center;
-  /* Changed from flex-end to center to move it up */
   justify-content: center;
-  overflow: hidden;
   z-index: 2;
-  margin-top: -3rem;
-  /* Push slightly closer to navbar */
+  padding: 2rem;
 }
 
-/* Glowing blob behind placeholder */
+/* Glowing blob behind the card */
 .photo-glow {
   position: absolute;
-  bottom: 0;
+  width: 380px;
+  height: 480px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 420px;
-  height: 520px;
-  background: radial-gradient(ellipse at bottom, rgba(234, 179, 8, 0.18) 0%, transparent 70%);
-  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(234, 179, 8, 0.08) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 1;
   animation: pulse 4s ease-in-out infinite;
 }
 
-/* The placeholder silhouette */
+:is(.dark) .photo-glow {
+  background: radial-gradient(ellipse at center, rgba(234, 179, 8, 0.15) 0%, transparent 70%);
+}
+
+/* ── Contained card ── */
 .photo-placeholder {
   position: relative;
   width: 320px;
-  height: 480px;
-  margin-bottom: 0;
+  height: 430px;
+  border-radius: 16px;
+  overflow: hidden;
   opacity: 0;
   animation: riseIn 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  box-shadow:
+    0 0 0 1px rgba(234, 179, 8, 0.18),
+    0 24px 60px rgba(0, 0, 0, 0.12),
+    0 0 40px rgba(234, 179, 8, 0.05);
+  cursor: pointer;
+  z-index: 2;
 }
 
-/* SVG silhouette fill */
-.silhouette-fill {
-  fill: rgba(234, 179, 8, 0.08);
+:is(.dark) .photo-placeholder {
+  box-shadow:
+    0 0 0 1px rgba(234, 179, 8, 0.18),
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(234, 179, 8, 0.08);
 }
 
-.silhouette-stroke {
-  fill: none;
-  stroke: rgba(234, 179, 8, 0.22);
-  stroke-width: 1.5;
+/* ── Image fills the card ── */
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.55s ease;
+  filter: brightness(0.95) saturate(1.05);
+}
+
+:is(.dark) .hero-image {
+  filter: brightness(0.9) saturate(1.05);
+}
+
+/* ── Hover: subtle zoom + brighten ── */
+.photo-placeholder:hover .hero-image {
+  transform: scale(1.05);
+  filter: brightness(1.02) saturate(1.15);
+}
+
+/* Bottom gradient — name fade effect */
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(241, 245, 249, 0.35) 0%,
+      transparent 40%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+:is(.dark) .photo-overlay {
+  background: linear-gradient(to top,
+      rgba(13, 17, 23, 0.45) 0%,
+      transparent 40%);
+}
+
+/* Shine sweep on hover */
+.photo-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+      transparent 30%,
+      rgba(234, 179, 8, 0.07) 50%,
+      transparent 70%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: none;
+}
+
+.photo-placeholder:hover .photo-shine {
+  opacity: 1;
+  transform: translateX(100%);
+  transition: transform 0.65s ease, opacity 0.1s ease;
 }
 
 /* Corner accent lines */
@@ -231,50 +327,30 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 5;
 }
 
 .photo-frame::before,
 .photo-frame::after {
   content: '';
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-color: var(--color-primary-500);
   border-style: solid;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .photo-frame::before {
-  top: -8px;
-  right: -8px;
+  top: 12px;
+  right: 12px;
   border-width: 2px 2px 0 0;
 }
 
 .photo-frame::after {
-  bottom: -8px;
-  left: -8px;
+  bottom: 12px;
+  left: 12px;
   border-width: 0 0 2px 2px;
-}
-
-/* replace-me label */
-.photo-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: rgba(234, 179, 8, 0.45);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
-.photo-label svg {
-  opacity: 0.35;
 }
 
 /* Scroll indicator */
@@ -287,22 +363,30 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(100, 116, 139, 0.4);
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  z-index: 3;
+  z-index: 10;
   animation: fadeUp 1s 1.4s forwards;
   opacity: 0;
+}
+
+:is(.dark) .scroll-hint {
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .scroll-mouse {
   width: 20px;
   height: 32px;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(100, 116, 139, 0.3);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+}
+
+:is(.dark) .scroll-mouse {
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .scroll-mouse::after {
@@ -348,12 +432,10 @@
   0%,
   100% {
     opacity: 1;
-    transform: translateX(-50%) scale(1);
   }
 
   50% {
-    opacity: 0.7;
-    transform: translateX(-50%) scale(1.06);
+    opacity: 0.6;
   }
 }
 

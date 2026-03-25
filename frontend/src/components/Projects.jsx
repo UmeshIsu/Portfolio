@@ -1,42 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
+import swapUpImg from '../assets/Swap-up.jpeg';
+import educoImg from '../assets/Screenshot 2026-03-23 203203.png';
+import cbcImg from '../assets/logo2.png';
 
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution featuring secure payments, user authentication, and admin dashboard. Empty data placeholder for now.',
-    tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-    github: 'https://github.com/UmeshIsu',
+    title: 'Swap-Up',
+    type: 'Full Stack',
+    description: 'SwapUp is a comprehensive mobile app designed specifically for hotel shift management. Developed as our Software Development Group Project (SDGP) at the Informatics Institute of Technology (IIT), this application streamlines scheduling, attendance, and communication between hotel staff. It features strict role-based access, ensuring managers and employees only interact with the tools specific to their roles.',
+    tech: ['React native', 'Node.js', 'Express', 'TypeScript', 'Supabase', 'API'],
+    github: 'https://github.com/UmeshIsu/SwapUp',
     demo: '#',
-    image: 'https://via.placeholder.com/600x400/1e293b/3b82f6?text=Project+1',
+    image: swapUpImg,
   },
   {
     id: 2,
-    title: 'Task Management System',
-    description: 'A responsive web application for managing tasks, teams, and projects with real-time updates. Empty data placeholder.',
-    tech: ['React', 'Tailwind CSS', 'Supabase'],
-    github: 'https://github.com/UmeshIsu',
+    title: 'EDUCO',
+    type: 'Frontend',
+    description: 'This website is dedicated to promoting Sustainable Development Goal 4 (SDG 4): Quality Education, as outlined by the United Nations. Our mission is to create a platform that raises awareness and encourages action towards ensuring inclusive and equitable quality education for all.',
+    tech: ['HTML', 'Tailwind CSS', 'Javascript'],
+    github: 'https://github.com/UmeshIsu/EDUCO',
     demo: '#',
-    image: 'https://via.placeholder.com/600x400/1e293b/06b6d4?text=Project+2',
+    image: educoImg,
   },
   {
     id: 3,
-    title: 'Social Media Dashboard',
-    description: 'Analytics dashboard aggregating data from various social platforms with beautiful charting and light/dark mode.',
-    tech: ['JavaScript', 'HTML/CSS', 'Python', 'PostgreSQL'],
-    github: 'https://github.com/UmeshIsu',
+    title: 'CBC Crystal Beauty',
+    type: 'Full Stack',
+    description: 'An fullstack E-commerce web application for cosmetics items and appoitment scheduling for saloon.Building the backend API using Express.js to handle appointment scheduling, client management and services listings.Responsive frontend using React allowing clients to book appoinments and view services online.',
+    tech: ['React', 'Express.js', 'API', 'MongoDB'],
+    github: 'https://github.com/UmeshIsu/cdc-frontend',
     demo: '#',
-    image: 'https://via.placeholder.com/600x400/1e293b/8b5cf6?text=Project+3',
+    image: cbcImg,
   },
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 px-6 bg-gray-50 dark:bg-gray-900/50">
+    <section id="projects" className="py-20 px-6">
       <div className="container mx-auto max-w-6xl">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -61,44 +67,58 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="glass-panel rounded-2xl overflow-hidden group border border-primary-500/10 hover:border-primary-500/40 transition-all hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] flex flex-col"
             >
-              <div className="relative overflow-hidden h-48">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              {/* ── Image area ── */}
+              <div className="relative overflow-hidden h-56">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
+                {/* Bottom fade into card */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-75 pointer-events-none transition-opacity duration-500 group-hover:opacity-45" />
+                {/* Subtle gold tint on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-transparent to-transparent group-hover:from-primary-500/10 pointer-events-none transition-all duration-500" />
+                {/* Project Type Badge */}
+                {project.type && (
+                  <span className={`absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full z-10 shadow-lg backdrop-blur-sm ${
+                    project.type === 'Full Stack'
+                      ? 'bg-emerald-500/80 text-white shadow-emerald-500/30'
+                      : 'bg-sky-500/80 text-white shadow-sky-500/30'
+                  }`}>
+                    {project.type}
+                  </span>
+                )}
               </div>
-              
+
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 flex-grow text-sm leading-relaxed">
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech, i) => (
-                    <span 
-                      key={i} 
+                    <span
+                      key={i}
                       className="text-xs px-3 py-1 rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-400 font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                
+
                 <div className="flex justify-between items-center mt-auto border-t border-gray-200 dark:border-gray-700 pt-4">
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
+                  <a
+                    href={project.github}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-sm font-medium hover:text-primary-500 transition-colors"
                   >
                     <Github size={18} className="mr-2" /> Code
                   </a>
-                  <a 
-                    href={project.demo} 
-                    target="_blank" 
+                  <a
+                    href={project.demo}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-sm font-medium hover:text-cyan-500 transition-colors"
                   >
@@ -109,7 +129,7 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
-        
+
         <div className="mt-16 text-center">
           <a
             href="https://github.com/UmeshIsu"

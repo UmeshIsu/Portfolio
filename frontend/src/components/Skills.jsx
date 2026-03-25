@@ -16,7 +16,7 @@ const skillsData = [
   },
   {
     category: 'Tools',
-    skills: ['Git', 'GitHub', 'Postman', 'VS Code', 'NPM', 'Vite'],
+    skills: ['Git', 'GitHub', 'Postman', 'VS Code', 'IntelliJ IDE'],
   },
 ];
 
@@ -24,7 +24,7 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 px-6">
       <div className="container mx-auto max-w-6xl">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
