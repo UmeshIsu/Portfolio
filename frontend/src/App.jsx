@@ -8,11 +8,13 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ParticleBackground from './components/ParticleBackground';
 
 function App() {
   return (
     <ThemeProvider>
       <div className="font-sans min-h-screen selection:bg-primary-500/30">
+        <ParticleBackground />
         <Navbar />
         <main>
           <Hero />
