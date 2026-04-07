@@ -15,7 +15,7 @@ const Contact = () => {
     setStatus('loading');
 
     try {
-      const response = await fetch('https://portfolio-backend-y17e.onrender.com', {
+      const response = await fetch('https://portfolio-backend-y17e.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
