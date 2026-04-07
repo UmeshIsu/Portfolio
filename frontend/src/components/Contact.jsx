@@ -13,14 +13,14 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
-    
+
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('https://portfolio-backend-y17e.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
@@ -31,7 +31,7 @@ const Contact = () => {
       console.error(error);
       setStatus('error');
     }
-    
+
     setTimeout(() => {
       if (status !== 'loading') setStatus('idle');
     }, 5000);
@@ -40,7 +40,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto max-w-4xl">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -54,7 +54,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -69,8 +69,8 @@ const Contact = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="flex flex-col space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   id="name"
                   name="name"
                   value={formData.name}
@@ -82,8 +82,8 @@ const Contact = () => {
               </div>
               <div className="flex flex-col space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   id="email"
                   name="email"
                   value={formData.email}
@@ -94,10 +94,10 @@ const Contact = () => {
                 />
               </div>
             </div>
-            
+
             <div className="flex flex-col space-y-2">
               <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
-              <textarea 
+              <textarea
                 id="message"
                 name="message"
                 value={formData.message}
@@ -109,8 +109,8 @@ const Contact = () => {
               ></textarea>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={status === 'loading'}
               className="mt-4 px-8 py-4 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto self-end"
             >
