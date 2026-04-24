@@ -18,10 +18,10 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             className="flex justify-center"
           >
             <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden glass-panel flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500">
@@ -31,10 +31,10 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
           >
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Passionate Full Stack Developer</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
