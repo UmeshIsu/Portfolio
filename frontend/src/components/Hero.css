@@ -18,53 +18,20 @@
 @media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr;
-    min-height: auto;
-    padding-bottom: 4rem;
-  }
-
-  .hero-left {
-    padding: 6rem 6% 2rem;
-    text-align: center;
-    align-items: center;
-  }
-
-  .hero-cta {
-    justify-content: center;
-  }
-
-  .hero-socials {
-    justify-content: center;
   }
 
   .hero-photo {
-    display: flex;
-    justify-content: center;
+    height: 60%;
     align-items: center;
-    padding: 1rem;
-    order: -1;
-    padding-top: 5rem;
+    justify-content: center;
+    width: 80%;
   }
 
   .photo-placeholder {
-    width: 240px;
-    height: 300px;
-    border-radius: 12px;
+    width: 20%;
+    height: 20%;
   }
 
-  .photo-glow {
-    width: 280px;
-    height: 340px;
-  }
-
-  .photo-frame::before,
-  .photo-frame::after {
-    width: 24px;
-    height: 24px;
-  }
-
-  .scroll-hint {
-    display: none;
-  }
 }
 
 /* ── Left panel ── */
