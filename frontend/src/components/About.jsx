@@ -1,40 +1,55 @@
 import { motion } from 'framer-motion';
 import uniImg from '../assets/uni-img.jpg';
+import {
+  headingContainer, headingTitle, headingUnderline,
+  slideLeft, slideRight, staggerGrid, cardItem,
+} from '../utils/animations';
 
 const About = () => {
   return (
     <section id="about" className="py-20 px-6">
       <div className="container mx-auto max-w-5xl">
+
+        {/* Section heading with animated underline */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          variants={headingContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-block">About <span className="text-primary-500 glow-text">Me</span></h2>
-          <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"></div>
+          <motion.h2 variants={headingTitle} className="text-3xl md:text-5xl font-bold mb-4 inline-block">
+            About <span className="text-primary-500 glow-text">Me</span>
+          </motion.h2>
+          <motion.div
+            variants={headingUnderline}
+            style={{ originX: '50%' }}
+            className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"
+          />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
+
+          {/* Image */}
           <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            variants={slideLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
             className="flex justify-center"
           >
             <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden glass-panel flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-500">
               <img src={uniImg} alt="Umesh Isuranga at University" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 border-2 border-primary-500/30 rounded-2xl glow-effect pointer-events-none"></div>
+              <div className="absolute inset-0 border-2 border-primary-500/30 rounded-2xl glow-effect pointer-events-none" />
             </div>
           </motion.div>
 
+          {/* Text + stat cards */}
           <motion.div
-            initial={{ opacity: 0, x: 80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+            variants={slideRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
           >
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Passionate Full Stack Developer</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
@@ -44,17 +59,33 @@ const About = () => {
               My approach focuses on writing clean, scalable code and turning complex problems into elegant, professional solutions. I love implementing smooth animations, glowing effects, and responsive designs that captivate users.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
-              <div className="glass-panel p-5 rounded-xl border border-primary-500/20 hover:border-primary-500/50 transition-colors group cursor-default">
+            {/* Staggered stat cards */}
+            <motion.div
+              variants={staggerGrid}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              className="grid grid-cols-2 gap-6"
+            >
+              <motion.div
+                variants={cardItem}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="glass-panel p-5 rounded-xl border border-primary-500/20 hover:border-primary-500/50 transition-colors group cursor-default"
+              >
                 <h4 className="font-bold text-primary-500 text-3xl mb-1 group-hover:scale-110 transform transition-transform origin-left">Passion</h4>
                 <p className="text-sm text-gray-500 dark:text-gray-300">For Innovation</p>
-              </div>
-              <div className="glass-panel p-5 rounded-xl border border-cyan-500/20 hover:border-cyan-500/50 transition-colors group cursor-default">
+              </motion.div>
+              <motion.div
+                variants={cardItem}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="glass-panel p-5 rounded-xl border border-cyan-500/20 hover:border-cyan-500/50 transition-colors group cursor-default"
+              >
                 <h4 className="font-bold text-cyan-400 text-3xl mb-1 group-hover:scale-110 transform transition-transform origin-left">Quality</h4>
                 <p className="text-sm text-gray-500 dark:text-gray-300">Clean Code Focus</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -1,9 +1,18 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+
+const GitHubIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0 1 12 6.796a11.52 11.52 0 0 1 3.004.404c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+  </svg>
+);
 import swapUpImg from '../assets/Swap-up.jpeg';
 import educoImg from '../assets/Screenshot 2026-03-23 203203.png';
 import cbcImg from '../assets/logo2.png';
+import {
+  headingContainer, headingTitle, headingUnderline, headingSubtext,
+  staggerGrid, cardItem,
+} from '../utils/animations';
 
 const projects = [
   {
@@ -42,43 +51,51 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 px-6">
       <div className="container mx-auto max-w-6xl">
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          variants={headingContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-block">Featured <span className="text-primary-500 glow-text">Projects</span></h2>
-          <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"></div>
-          <p className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <motion.h2 variants={headingTitle} className="text-3xl md:text-5xl font-bold mb-4 inline-block">
+            Featured <span className="text-primary-500 glow-text">Projects</span>
+          </motion.h2>
+          <motion.div
+            variants={headingUnderline}
+            style={{ originX: '50%' }}
+            className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"
+          />
+          <motion.p variants={headingSubtext} className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A selection of my recent works. I focus on aesthetic UI design and robust backend performance.
             (Data to be added later)
-          </p>
+          </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+        <motion.div
+          variants={staggerGrid}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {projects.map((project) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-panel rounded-2xl overflow-hidden group border border-primary-500/10 hover:border-primary-500/40 transition-all hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] flex flex-col"
+              variants={cardItem}
+              whileHover={{ y: -7, transition: { duration: 0.22 } }}
+              className="glass-panel rounded-2xl overflow-hidden group border border-primary-500/10 hover:border-primary-500/40 transition-all hover:shadow-[0_0_28px_rgba(234,179,8,0.12)] flex flex-col"
             >
-              {/* ── Image area ── */}
+              {/* Image area */}
               <div className="relative overflow-hidden h-56">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                {/* Bottom fade into card */}
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-75 pointer-events-none transition-opacity duration-500 group-hover:opacity-45" />
-                {/* Subtle gold tint on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-transparent to-transparent group-hover:from-primary-500/10 pointer-events-none transition-all duration-500" />
-                {/* Project Type Badge */}
                 {project.type && (
                   <span className={`absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full z-10 shadow-lg backdrop-blur-sm ${
                     project.type === 'Full Stack'
@@ -114,7 +131,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="flex items-center text-sm font-medium hover:text-primary-500 transition-colors"
                   >
-                    <Github size={18} className="mr-2" /> Code
+                    <GitHubIcon size={18} /> <span className="ml-2">Code</span>
                   </a>
                   <a
                     href={project.demo}
@@ -128,9 +145,15 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 text-center"
+        >
           <a
             href="https://github.com/UmeshIsu"
             target="_blank"
@@ -139,7 +162,8 @@ const Projects = () => {
           >
             See more on GitHub <ExternalLink size={16} className="ml-2" />
           </a>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

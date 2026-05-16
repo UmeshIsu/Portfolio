@@ -12,7 +12,7 @@
 }
 
 :is(.dark) .hero {
-  background: linear-gradient(135deg, #0d1117 0%, #141b27 60%, #0a1628 100%);
+  background: #000000;
 }
 
 @media (max-width: 960px) {
@@ -133,7 +133,7 @@
 .btn-primary {
   padding: 13px 32px;
   background: var(--color-primary-500);
-  color: #0d1117;
+  color: #000000;
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
@@ -174,6 +174,31 @@
   border-color: var(--color-primary-500);
   color: var(--color-primary-500);
   transform: translateY(-2px);
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--color-primary-500);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid var(--color-primary-500);
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+.btn-download:hover {
+  background: var(--color-primary-500);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(234, 179, 8, 0.3);
 }
 
 /* ── Social icons ── */
@@ -223,8 +248,8 @@
 /* Glowing blob behind the card */
 .photo-glow {
   position: absolute;
-  width: 380px;
-  height: 480px;
+  width: 480px;
+  height: 580px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -241,8 +266,8 @@
 /* ── Contained card ── */
 .photo-placeholder {
   position: relative;
-  width: 320px;
-  height: 430px;
+  width: 420px;
+  height: 540px;
   border-radius: 16px;
   overflow: hidden;
   opacity: 0;
@@ -297,7 +322,7 @@
 
 :is(.dark) .photo-overlay {
   background: linear-gradient(to top,
-      rgba(13, 17, 23, 0.45) 0%,
+      rgba(0, 0, 0, 0.5) 0%,
       transparent 40%);
 }
 

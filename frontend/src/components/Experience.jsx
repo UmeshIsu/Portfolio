@@ -1,38 +1,53 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import {
+  headingContainer, headingTitle, headingUnderline,
+  slideLeft, slideRight, timelineLineVariant,
+} from '../utils/animations';
 
 const Experience = () => {
   return (
     <section id="experience" className="py-20 px-6">
       <div className="container mx-auto max-w-4xl">
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          variants={headingContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-block">Education & <span className="text-primary-500 glow-text">Experience</span></h2>
-          <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"></div>
+          <motion.h2 variants={headingTitle} className="text-3xl md:text-5xl font-bold mb-4 inline-block">
+            Education & <span className="text-primary-500 glow-text">Experience</span>
+          </motion.h2>
+          <motion.div
+            variants={headingUnderline}
+            style={{ originX: '50%' }}
+            className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"
+          />
         </motion.div>
 
         <div className="relative border-l-2 md:border-l-0 border-primary-500/30 ml-3 md:ml-0 md:pl-0">
-          
-          {/* Desktop Center Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary-500/30 -translate-x-1/2"></div>
 
-          {/* Education Item 1 */}
+          {/* Desktop center line — animates from top to bottom */}
+          <motion.div
+            variants={timelineLineVariant}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            style={{ originY: 0 }}
+            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-primary-500/30 -translate-x-1/2"
+          />
+
+          {/* Item 1 — left */}
           <div className="mb-12 relative flex flex-col md:flex-row md:justify-center pl-8 md:pl-0">
-            {/* Dot */}
-            <div className="absolute w-6 h-6 bg-cyan-500 rounded-full left-[-11px] md:left-1/2 md:-translate-x-1/2 top-1 md:top-6 border-4 border-bg-color shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10"></div>
-            
-            {/* Left Content */}
+            <div className="absolute w-6 h-6 bg-cyan-500 rounded-full left-[-11px] md:left-1/2 md:-translate-x-1/2 top-1 md:top-6 border-4 border-bg-color shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10" />
             <div className="w-full md:w-1/2 md:pr-12 order-2 md:order-1 pt-2 md:pt-0">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                variants={slideLeft}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="glass-panel p-6 rounded-2xl border border-cyan-500/10 hover:border-cyan-500/40 transition-all hover:shadow-[0_0_15px_rgba(6,182,212,0.1)] text-left"
               >
                 <span className="text-sm text-cyan-500 font-bold tracking-wider mb-2 block">2023 - Present</span>
@@ -52,26 +67,20 @@ const Experience = () => {
                 </div>
               </motion.div>
             </div>
-            
-            {/* Right Empty */}
-            <div className="hidden md:block w-full md:w-1/2 order-1 md:order-2"></div>
+            <div className="hidden md:block w-full md:w-1/2 order-1 md:order-2" />
           </div>
 
-          {/* Education Item 2 */}
+          {/* Item 2 — right */}
           <div className="mb-12 relative flex flex-col md:flex-row md:justify-center pl-8 md:pl-0">
-            {/* Dot */}
-            <div className="absolute w-6 h-6 bg-cyan-500 rounded-full left-[-11px] md:left-1/2 md:-translate-x-1/2 top-1 md:top-6 border-4 border-bg-color shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10"></div>
-            
-            {/* Left Empty */}
-            <div className="hidden md:block w-full md:w-1/2 md:pr-12 order-1"></div>
-            
-            {/* Right Content */}
+            <div className="absolute w-6 h-6 bg-cyan-500 rounded-full left-[-11px] md:left-1/2 md:-translate-x-1/2 top-1 md:top-6 border-4 border-bg-color shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10" />
+            <div className="hidden md:block w-full md:w-1/2 md:pr-12 order-1" />
             <div className="w-full md:w-1/2 md:pl-12 order-2 pt-2 md:pt-0">
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                variants={slideRight}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="glass-panel p-6 rounded-2xl border border-cyan-500/10 hover:border-cyan-500/40 transition-all hover:shadow-[0_0_15px_rgba(6,182,212,0.1)] text-left"
               >
                 <span className="text-sm text-cyan-500 font-bold tracking-wider mb-2 block">2023 - 2024</span>
@@ -90,18 +99,16 @@ const Experience = () => {
             </div>
           </div>
 
-          {/* Education Item 3 */}
+          {/* Item 3 — left */}
           <div className="mb-12 relative flex flex-col md:flex-row md:justify-center pl-8 md:pl-0">
-            {/* Dot */}
-            <div className="absolute w-6 h-6 bg-cyan-500 rounded-full left-[-11px] md:left-1/2 md:-translate-x-1/2 top-1 md:top-6 border-4 border-bg-color shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10"></div>
-            
-            {/* Left Content */}
+            <div className="absolute w-6 h-6 bg-cyan-500 rounded-full left-[-11px] md:left-1/2 md:-translate-x-1/2 top-1 md:top-6 border-4 border-bg-color shadow-[0_0_10px_rgba(6,182,212,0.8)] z-10" />
             <div className="w-full md:w-1/2 md:pr-12 order-2 md:order-1 pt-2 md:pt-0">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                variants={slideLeft}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="glass-panel p-6 rounded-2xl border border-cyan-500/10 hover:border-cyan-500/40 transition-all hover:shadow-[0_0_15px_rgba(6,182,212,0.1)] text-left"
               >
                 <span className="text-sm text-cyan-500 font-bold tracking-wider mb-2 block">2017 - 2023</span>
@@ -112,9 +119,7 @@ const Experience = () => {
                 </p>
               </motion.div>
             </div>
-            
-            {/* Right Empty */}
-            <div className="hidden md:block w-full md:w-1/2 order-1 md:order-2"></div>
+            <div className="hidden md:block w-full md:w-1/2 order-1 md:order-2" />
           </div>
 
         </div>

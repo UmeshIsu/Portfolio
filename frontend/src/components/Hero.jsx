@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Github, Linkedin, Mail, Download } from 'lucide-react';
 import './Hero.css';
 
 import myPhoto from '../assets/Present-img.jpg';
+import cvPdf from '../assets/Umesh Isuranga_SE.pdf';
 
 /* ─── Animated canvas background ─── */
 const ParticleCanvas = () => {
@@ -88,13 +90,23 @@ const ParticleCanvas = () => {
 
 /* ─── Hero ─── */
 const Hero = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-22%']);
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '-38%']);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+
   return (
     <>
-      <section className="hero" id="home">
+      <section className="hero" id="home" ref={heroRef}>
         <ParticleCanvas />
 
         {/* ── LEFT ── */}
-        <div className="hero-left">
+        <motion.div className="hero-left" style={{ y: textY, opacity: heroOpacity }}>
           <span className="hero-tag">Portfolio</span>
 
           <h1 className="hero-name">
@@ -113,6 +125,14 @@ const Hero = () => {
           <div className="hero-cta">
             <a href="#projects" className="btn-primary">View Projects</a>
             <a href="#contact" className="btn-outline">Contact Me</a>
+            <a
+              href={cvPdf}
+              download="Umesh Isuranga_SE.pdf"
+              className="btn-download"
+            >
+              <Download size={15} />
+              Download CV
+            </a>
           </div>
 
           <div className="hero-socials">
@@ -126,10 +146,10 @@ const Hero = () => {
               <Mail size={17} />
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* ── RIGHT — photo ── */}
-        <div className="hero-photo">
+        <motion.div className="hero-photo" style={{ y: photoY }}>
           <div className="photo-glow" />
           <div className="photo-placeholder">
             <div className="photo-frame" />
@@ -141,7 +161,7 @@ const Hero = () => {
             />
             <div className="photo-shine" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator */}
         <div className="scroll-hint">

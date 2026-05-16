@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import {
+  headingContainer, headingTitle, headingUnderline, headingSubtext, scaleIn,
+} from '../utils/animations';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,30 +43,36 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto max-w-4xl">
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          variants={headingContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 inline-block">Get In <span className="text-primary-500 glow-text">Touch</span></h2>
-          <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"></div>
-          <p className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <motion.h2 variants={headingTitle} className="text-3xl md:text-5xl font-bold mb-4 inline-block">
+            Get In <span className="text-primary-500 glow-text">Touch</span>
+          </motion.h2>
+          <motion.div
+            variants={headingUnderline}
+            style={{ originX: '50%' }}
+            className="w-24 h-1 bg-primary-500 mx-auto rounded-full glow-effect"
+          />
+          <motion.p variants={headingSubtext} className="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Hiring? Have a project in mind? Let's connect and create something amazing together.
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          variants={scaleIn}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="glass-panel p-8 md:p-12 rounded-3xl border border-primary-500/20 shadow-[0_0_30px_rgba(59,130,246,0.05)] relative overflow-hidden"
+          className="glass-panel p-8 md:p-12 rounded-3xl border border-primary-500/20 shadow-[0_0_30px_rgba(234,179,8,0.05)] relative overflow-hidden"
         >
-          {/* Decorative Background Elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
 
           <form onSubmit={handleSubmit} className="relative z-10 flex flex-col space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
@@ -106,13 +115,15 @@ const Contact = () => {
                 rows="5"
                 className="px-4 py-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all resize-none dark:text-white"
                 placeholder="How can I help you?"
-              ></textarea>
+              />
             </div>
 
-            <button
+            <motion.button
               type="submit"
               disabled={status === 'loading'}
-              className="mt-4 px-8 py-4 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto self-end"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="mt-4 px-8 py-4 rounded-xl bg-primary-600 hover:bg-primary-500 text-white font-bold tracking-wide transition-colors shadow-[0_0_15px_rgba(234,179,8,0.3)] hover:shadow-[0_0_25px_rgba(234,179,8,0.5)] flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto self-end"
             >
               {status === 'loading' ? (
                 <span className="animate-pulse">Sending...</span>
@@ -122,23 +133,31 @@ const Contact = () => {
                   <Send size={18} />
                 </>
               )}
-            </button>
+            </motion.button>
 
-            {/* Status Messages */}
             {status === 'success' && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center text-green-500 justify-end mt-4">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center text-green-500 justify-end mt-4"
+              >
                 <CheckCircle size={20} className="mr-2" />
                 <span>Message sent successfully! I'll get back to you soon.</span>
               </motion.div>
             )}
             {status === 'error' && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center text-red-500 justify-end mt-4">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center text-red-500 justify-end mt-4"
+              >
                 <AlertCircle size={20} className="mr-2" />
                 <span>Oops! Something went wrong. Please try again.</span>
               </motion.div>
             )}
           </form>
         </motion.div>
+
       </div>
     </section>
   );
