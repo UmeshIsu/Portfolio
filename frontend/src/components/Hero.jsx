@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, Download } from 'lucide-react';
 import './Hero.css';
 
 import myPhoto from '../assets/Present-img.jpg';
-import cvPdf from '../assets/Umesh Isuranga_SE.pdf';
+import cvPdf from '../assets/Umesh_Isuranga_Software_Engineer_Intern.pdf';
 
 /* ─── Animated canvas background ─── */
 const ParticleCanvas = () => {
@@ -127,7 +127,7 @@ const Hero = () => {
             <a href="#contact" className="btn-outline">Contact Me</a>
             <a
               href={cvPdf}
-              download="Umesh Isuranga_SE.pdf"
+              download="Umesh_Isuranga_Software_Engineer_Intern.pdf"
               className="btn-download"
             >
               <Download size={15} />
