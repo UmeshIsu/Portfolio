@@ -18,8 +18,9 @@ const Navbar = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -51,7 +52,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           <ul className="flex space-x-6">
             {navLinks.map((link, i) => (
               <motion.li
@@ -83,7 +84,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile controls */}
-        <div className="md:hidden flex items-center space-x-4">
+        <div className="lg:hidden flex items-center space-x-4">
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
@@ -131,7 +132,7 @@ const Navbar = () => {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden overflow-hidden absolute top-full left-0 w-full glass-panel border-t border-border-color shadow-lg"
+            className="lg:hidden overflow-hidden absolute top-full left-0 w-full glass-panel border-t border-border-color shadow-lg"
           >
             <motion.div
               className="flex flex-col space-y-1 py-4 px-6"
